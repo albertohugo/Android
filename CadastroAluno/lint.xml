@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ContentDescription">
+        <ignore path="res/layout/formulario.xml" />
+        <ignore path="res/layout/linha_listagem.xml" />
+    </issue>
+    <issue id="HardcodedText">
+        <ignore path="res/layout/formulario.xml" />
+        <ignore path="res/menu/lista_alunos.xml" />
+    </issue>
+    <issue id="InvalidId" severity="ignore" />
+    <issue id="MenuTitle">
+        <ignore path="res/menu/lista_alunos.xml" />
+    </issue>
+    <issue id="Orientation">
+        <ignore path="res/layout/formulario.xml" />
+    </issue>
+    <issue id="TextFields">
+        <ignore path="res/layout/formulario.xml" />
+    </issue>
+    <issue id="UseCompoundDrawables">
+        <ignore path="res/layout/linha_listagem.xml" />
+    </issue>
+</lint>
