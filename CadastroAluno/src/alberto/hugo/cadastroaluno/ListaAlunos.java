@@ -5,14 +5,10 @@ import java.util.List;
 import alberto.hugo.cadastroaluno.adapter.ListaAlunosAdapter;
 import alberto.hugo.cadastroaluno.dao.AlunoDAO;
 import alberto.hugo.cadastroaluno.modelo.Aluno;
-import alberto.hugo.cadastroaluno.task.EnviaAlunosTask;
-import alberto.hugo.cadastroaluno.util.AlunoConverter;
-import alberto.hugo.cadastroaluno.util.WebClient;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -24,7 +20,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ListaAlunos extends ActionBarActivity {
 	private ListView lista;
