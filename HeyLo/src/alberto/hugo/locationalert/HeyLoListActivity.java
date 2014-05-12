@@ -8,10 +8,17 @@ import alberto.hugo.locationalert.modelo.Notificacao;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+
+
 
 public class HeyLoListActivity extends ActionBarActivity {
 	private ListView lista;
@@ -32,6 +39,31 @@ public class HeyLoListActivity extends ActionBarActivity {
 		// Ativa a lista para o menu de longo clique
 		registerForContextMenu(lista);
 		lista.setAdapter(adapter);
+		
+		lista.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view,
+					int posicao, long id) {
+				Notificacao nofificacaoClicada = (Notificacao) adapter.getItemAtPosition(posicao);
+				Intent irPararFormularioActivity = new Intent(HeyLoListActivity.this,
+						FormularioActivity.class);
+				irPararFormularioActivity.putExtra("notificacaoSelecionada", nofificacaoClicada);
+				startActivity(irPararFormularioActivity);
+			}
+		});
+		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> adapter, View view,
+					int posicao, long id) {
+
+				notificacao = (Notificacao) adapter.getItemAtPosition(posicao);
+
+				return false;
+			}
+
+		});
 
     }
     

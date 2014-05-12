@@ -1,6 +1,8 @@
 package alberto.hugo.locationalert.modelo;
 
-public class Notificacao {
+import java.io.Serializable;
+
+public class Notificacao implements Serializable{
 	private Long id;
 	private String descricao;
 	private String endereco;

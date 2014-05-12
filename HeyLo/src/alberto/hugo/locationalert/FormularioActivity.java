@@ -2,14 +2,14 @@ package alberto.hugo.locationalert;
 
 import alberto.hugo.locationalert.dao.NotificacaoDAO;
 import alberto.hugo.locationalert.modelo.Notificacao;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class FormularioActivity extends ActionBarActivity {
+public class FormularioActivity extends Activity {
 
 	private FormularioHelper helper;
 
@@ -26,6 +26,12 @@ public class FormularioActivity extends ActionBarActivity {
 
 		Button botao = (Button) findViewById(R.id.botao);
 
+		if(notificacaoParaSerAlterada !=null){
+			botao.setText("Alterar");
+			helper.colocaNotificacaoNoFormulario(notificacaoParaSerAlterada);
+			
+		}
+		
 		botao.setOnClickListener(new OnClickListener() {
 
 			@Override
