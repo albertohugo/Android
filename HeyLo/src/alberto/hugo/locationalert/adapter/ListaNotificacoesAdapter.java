@@ -47,6 +47,9 @@ public class ListaNotificacoesAdapter extends BaseAdapter {
 		TextView descricao = (TextView) linha.findViewById(R.id.descricao);
 		descricao.setText(notificacao.getDescricao());
 		
+		TextView endereco= (TextView) linha.findViewById(R.id.endereco);
+		endereco.setText(notificacao.getEndereco());
+		
 		  if(position % 2 ==0){
 			  linha.setBackgroundResource(R.drawable.gradient_bg);
 		    }else if(position % 3 ==0){
