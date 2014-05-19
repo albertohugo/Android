@@ -53,9 +53,11 @@ public class ListaNotificacoesAdapter extends BaseAdapter {
 		  if(position % 2 ==0){
 			  linha.setBackgroundResource(R.drawable.gradient_bg);
 		    }else if(position % 3 ==0){
-		    	linha.setBackgroundResource(R.drawable.gradient_bg_hover);
+		    	 linha.setBackgroundResource(R.drawable.gradient_bg);
+		    	//linha.setBackgroundResource(R.drawable.gradient_bg_hover);
 		    }else{
-		    	linha.setBackgroundResource(R.drawable.gradient_bg_hover);
+		    	 linha.setBackgroundResource(R.drawable.gradient_bg);
+		    	//linha.setBackgroundResource(R.drawable.gradient_bg_hover);
 		    }
 
 //add more informations

@@ -60,7 +60,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 
 	public void deletar(Notificacao notificacao) {
 		String[] args = { notificacao.getId().toString() };
-		getWritableDatabase().delete("Notificacao", "id=?", args);
+		getWritableDatabase().delete("Notificacoes", "id=?", args);
 	}
 
 	public void altera(Notificacao notificacao) {

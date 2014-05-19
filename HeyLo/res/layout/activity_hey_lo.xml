@@ -2,19 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="alberto.hugo.locationalert.HeyLoActivity$PlaceholderFragment" >
+    android:background="#99CCFF"  >
 
     <ListView
         android:id="@+id/lista"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:divider="#b5b5b5"
-        android:dividerHeight="1dp"
+        
+        android:dividerHeight="0dp"
         android:listSelector="@drawable/list_selector" >
+        <!-- android:divider="#b5b5b5" -->
     </ListView>
 
 </LinearLayout>
