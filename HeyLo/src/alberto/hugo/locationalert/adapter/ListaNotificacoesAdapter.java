@@ -2,19 +2,28 @@ package alberto.hugo.locationalert.adapter;
 
 import java.util.List;
 
-import alberto.hugo.locationalert.modelo.Notificacao;
 import alberto.hugo.locationalert.R;
+import alberto.hugo.locationalert.modelo.Notificacao;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListaNotificacoesAdapter extends BaseAdapter {
 
+	private static final String TAG = null;
 	private List<Notificacao> notificacoes;
 	private Activity activity;
+	 private Integer[] mImageIds = {
+             R.drawable.ic_delete,
+             R.drawable.ic_delete,
+             R.drawable.ic_delete,
+             R.drawable.ic_list
+     };
 
 	public ListaNotificacoesAdapter(List<Notificacao> notificacoes, Activity activity) {
 		this.notificacoes = notificacoes;
@@ -44,6 +53,11 @@ public class ListaNotificacoesAdapter extends BaseAdapter {
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View linha = inflater.inflate(R.layout.linha_listagem, null);
 
+		ImageView foto = (ImageView) linha.findViewById(R.id.foto);
+		
+		foto.setImageResource(mImageIds[notificacao.getImage()]);
+		 Log.d(TAG,"Foto: "+ notificacao.getImage());
+		
 		TextView descricao = (TextView) linha.findViewById(R.id.descricao);
 		descricao.setText(notificacao.getDescricao());
 		

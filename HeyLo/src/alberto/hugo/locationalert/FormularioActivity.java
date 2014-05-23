@@ -1,40 +1,46 @@
 package alberto.hugo.locationalert;
 
+import alberto.hugo.locationalert.adapter.GalleryImageAdapter;
 import alberto.hugo.locationalert.dao.NotificacaoDAO;
 import alberto.hugo.locationalert.modelo.Notificacao;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.Gallery;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class FormularioActivity extends ActionBarActivity implements
 		OnItemSelectedListener {
 	private Spinner spinner;
 	private FormularioHelper helper;
 	private Notificacao notificacaoParaSerAlterada;
-	String []mydata1={"American Cuisine","French Cuisine"};
-	Integer[]images={R.drawable.ic_delete,R.drawable.ic_list};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_formulario);
 		
-		 Spinner mySpinner = (Spinner)findViewById(R.id.spinner);
-	        mySpinner.setAdapter(new MyAdapter(this, R.layout.linha_spinner, mydata1));
+		helper = new FormularioHelper(this);
 		
+		Gallery gallery = helper.getImage(); 
+
+	      gallery.setOnItemClickListener(new OnItemClickListener() {
+	            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	                Toast.makeText(FormularioActivity.this, "Your selected position = " + position, Toast.LENGTH_SHORT).show();
+	                
+	            }
+	        });
+		
+	      
+	      
 		Intent intent = getIntent();
 		notificacaoParaSerAlterada = (Notificacao) intent
 				.getSerializableExtra("notificacaoSelecionada");
@@ -63,6 +69,7 @@ public class FormularioActivity extends ActionBarActivity implements
 			Notificacao notificacao = helper.pegaNotificacaoDoFormulario();
 
 			NotificacaoDAO dao = new NotificacaoDAO(FormularioActivity.this);
+			
 			if (notificacaoParaSerAlterada == null) {
 				dao.salva(notificacao);
 			} else {
@@ -93,39 +100,5 @@ public class FormularioActivity extends ActionBarActivity implements
 		// TODO Auto-generated method stub
 
 	}
-	 public class MyAdapter extends ArrayAdapter<String>
-	    {
-	 
-	            public MyAdapter(Context context, int textViewResourceId, String[] objects) 
-	            {
-	                  super(context, textViewResourceId, objects);
-	            }
-	             
-	             
-	            @Override
-	            public View getDropDownView(int position, View convertView,ViewGroup parent)
-	            {
-	            return getCustomView(position, convertView, parent);
-	            }
-	 
-	            @Override
-	            public View getView(int position, View convertView, ViewGroup parent) 
-	            {
-	            return getCustomView(position, convertView, parent);
-	            }
-	 
-	        public View getCustomView(int position, View convertView, ViewGroup parent) 
-	        {
-	 
-	            LayoutInflater inflater=getLayoutInflater();
-	            View row=inflater.inflate(R.layout.linha_spinner, parent, false);
-	         
-	            ImageView iconSpinner=(ImageView)row.findViewById(R.id.img_Spinner);
-	            iconSpinner.setImageResource(images[position]);
-	 
-	            return row;
-	            }
-	        
-	        }
-	   
+	
 }

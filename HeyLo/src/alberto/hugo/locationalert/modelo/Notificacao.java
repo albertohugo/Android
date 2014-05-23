@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Notificacao implements Serializable{
 	private Long id;
+
+	private Integer image;
+	
 	private String descricao;
 	private String endereco;
 	
@@ -12,6 +15,14 @@ public class Notificacao implements Serializable{
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	public Integer getImage() {
+		return image;
+	}
+	public void setImage(Integer image) {
+		this.image = image;
 	}
 	public String getDescricao() {
 		return descricao;

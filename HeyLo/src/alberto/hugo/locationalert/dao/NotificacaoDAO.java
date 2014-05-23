@@ -13,14 +13,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class NotificacaoDAO extends SQLiteOpenHelper{
 
 	private static final String DATABASE = "HeyLo";
-	private static final int VERSAO = 1;
+	private static final int VERSAO = 6;
 	
 	public NotificacaoDAO(Context context) {
 		super(context, DATABASE, null, VERSAO);
 	}
 	public void salva(Notificacao notificacao) {
 		ContentValues values = new ContentValues();
-
+		values.put("imagem", notificacao.getImage());
 		values.put("descricao", notificacao.getDescricao());
 		values.put("endereco", notificacao.getEndereco());
 	
@@ -28,7 +28,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String ddl = "CREATE TABLE Notificacoes (id INTEGER PRIMARY KEY, descricao TEXT UNIQUE NOT NULL, endereco TEXT);";
+		String ddl = "CREATE TABLE Notificacoes (id INTEGER PRIMARY KEY, imagem INTEGER, descricao TEXT UNIQUE NOT NULL, endereco TEXT);";
 		db.execSQL(ddl);
 	}
 
@@ -40,7 +40,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 	}
 	
 	public List<Notificacao> getLista() {
-		String[] colunas = { "id", "descricao", "endereco"};
+		String[] colunas = { "id", "imagem","descricao", "endereco"};
 		Cursor cursor = getWritableDatabase().query("Notificacoes", colunas, null,
 				null, null, null, null);
 
@@ -49,8 +49,9 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 			Notificacao notificacao = new Notificacao();
 
 			notificacao.setId(cursor.getLong(0));
-			notificacao.setDescricao(cursor.getString(1));
-			notificacao.setEndereco(cursor.getString(2));
+			notificacao.setImage(cursor.getInt(1));
+			notificacao.setDescricao(cursor.getString(2));
+			notificacao.setEndereco(cursor.getString(3));
 		
 			notificacoes.add(notificacao);
 		}
@@ -65,7 +66,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 
 	public void altera(Notificacao notificacao) {
 		ContentValues values = new ContentValues();
-
+		values.put("imagem", notificacao.getImage());
 		values.put("descricao", notificacao.getDescricao());
 		values.put("endereco", notificacao.getEndereco());
 

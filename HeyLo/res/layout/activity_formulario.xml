@@ -5,11 +5,11 @@
     android:background="#99CCFF"
     android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Gallery
+        android:id="@+id/galleryImages"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
