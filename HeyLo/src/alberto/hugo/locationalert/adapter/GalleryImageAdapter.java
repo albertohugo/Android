@@ -13,13 +13,18 @@ public class GalleryImageAdapter extends BaseAdapter
 {
     private Context mContext;
 
-    private Integer[] mImageIds = {
-            R.drawable.ic_delete,
-            R.drawable.ic_delete,
-            R.drawable.ic_delete,
-            R.drawable.ic_list
-          
-    };
+	 private Integer[] mImageIds = {
+	            R.drawable.ic_home,
+	            R.drawable.ic_friends,
+	            R.drawable.ic_love,
+	            R.drawable.ic_ok,
+	            R.drawable.ic_nok,
+	            R.drawable.ic_mark,
+	            R.drawable.ic_plane,
+	            R.drawable.ic_beach,
+	            R.drawable.ic_stadium
+	    };
+
 
     public GalleryImageAdapter(Context context) 
     {

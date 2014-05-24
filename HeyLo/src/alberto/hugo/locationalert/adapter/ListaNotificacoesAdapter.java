@@ -2,8 +2,8 @@ package alberto.hugo.locationalert.adapter;
 
 import java.util.List;
 
-import alberto.hugo.locationalert.R;
 import alberto.hugo.locationalert.modelo.Notificacao;
+import alberto.hugo.locationalert.R;
 import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +19,16 @@ public class ListaNotificacoesAdapter extends BaseAdapter {
 	private List<Notificacao> notificacoes;
 	private Activity activity;
 	 private Integer[] mImageIds = {
-             R.drawable.ic_delete,
-             R.drawable.ic_delete,
-             R.drawable.ic_delete,
-             R.drawable.ic_list
-     };
+	            R.drawable.ic_home,
+	            R.drawable.ic_friends,
+	            R.drawable.ic_love,
+	            R.drawable.ic_ok,
+	            R.drawable.ic_nok,
+	            R.drawable.ic_mark,
+	            R.drawable.ic_plane,
+	            R.drawable.ic_beach,
+	            R.drawable.ic_stadium
+	    };
 
 	public ListaNotificacoesAdapter(List<Notificacao> notificacoes, Activity activity) {
 		this.notificacoes = notificacoes;

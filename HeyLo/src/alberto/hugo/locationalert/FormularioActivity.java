@@ -6,6 +6,7 @@ import alberto.hugo.locationalert.modelo.Notificacao;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 public class FormularioActivity extends ActionBarActivity implements
 		OnItemSelectedListener {
+	private static final String TAG = null;
 	private Spinner spinner;
 	private FormularioHelper helper;
 	private Notificacao notificacaoParaSerAlterada;
@@ -27,20 +29,21 @@ public class FormularioActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_formulario);
-		
-		helper = new FormularioHelper(this);
-		
-		Gallery gallery = helper.getImage(); 
 
-	      gallery.setOnItemClickListener(new OnItemClickListener() {
-	            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	                Toast.makeText(FormularioActivity.this, "Your selected position = " + position, Toast.LENGTH_SHORT).show();
-	                
-	            }
-	        });
-		
-	      
-	      
+		helper = new FormularioHelper(this);
+
+		Gallery gallery = helper.getImage();
+
+		gallery.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				Toast.makeText(FormularioActivity.this,
+						"Your selected position = " + position,
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+
 		Intent intent = getIntent();
 		notificacaoParaSerAlterada = (Notificacao) intent
 				.getSerializableExtra("notificacaoSelecionada");
@@ -67,8 +70,9 @@ public class FormularioActivity extends ActionBarActivity implements
 		switch (itemClicado) {
 		case R.id.salva:
 			Notificacao notificacao = helper.pegaNotificacaoDoFormulario();
-
 			NotificacaoDAO dao = new NotificacaoDAO(FormularioActivity.this);
+
+			if(isValidAddress(notificacao.getEndereco().toString())==true && isValidDescription(notificacao.getDescricao().toString())==true){			
 			
 			if (notificacaoParaSerAlterada == null) {
 				dao.salva(notificacao);
@@ -78,10 +82,14 @@ public class FormularioActivity extends ActionBarActivity implements
 			}
 
 			dao.close();
-
 			finish();
-			break;
 			
+			}else{
+				return true;
+			}
+
+			break;
+
 		default:
 			break;
 		}
@@ -101,4 +109,18 @@ public class FormularioActivity extends ActionBarActivity implements
 
 	}
 	
+	public boolean isValidAddress(String string) {
+		if (string != null && string.length() > 2) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isValidDescription(String string) {
+		if (string != null && string.length() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

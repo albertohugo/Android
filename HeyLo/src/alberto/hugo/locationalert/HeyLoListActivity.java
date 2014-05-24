@@ -5,8 +5,14 @@ import java.util.List;
 import alberto.hugo.locationalert.adapter.ListaNotificacoesAdapter;
 import alberto.hugo.locationalert.dao.NotificacaoDAO;
 import alberto.hugo.locationalert.modelo.Notificacao;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -19,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class HeyLoListActivity extends ActionBarActivity {
 	private ListView lista;
@@ -31,8 +38,8 @@ public class HeyLoListActivity extends ActionBarActivity {
 
 		NotificacaoDAO dao = new NotificacaoDAO(this);
 		List<Notificacao> notificacoes = dao.getLista();
-		dao.close();
-
+		dao.close();			
+	
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(
 				notificacoes, this);
 
@@ -86,8 +93,17 @@ public class HeyLoListActivity extends ActionBarActivity {
 			startActivity(irParaFormulario);
 			break;
 		case R.id.mapa:
-			Intent irParaMapa = new Intent(this, MapActivity.class);
-			startActivity(irParaMapa);
+			ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		     NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		     
+		     if(activeNetworkInfo != null){	    			
+				Intent irParaMapa = new Intent(this, MapActivity.class);
+				startActivity(irParaMapa);
+		     } else {		  
+			    	CallNetworkSetting();
+				}
+		     
+		     
 			break;
 
 		default:
@@ -132,6 +148,33 @@ public class HeyLoListActivity extends ActionBarActivity {
 				notificacao, this);
 
 		lista.setAdapter(adapter);
+	}
+	private void CallNetworkSetting() {
+		final Context ctx = this;
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setCancelable(true);
+		builder.setMessage("This application requires a working data connection.");
+		builder.setTitle("No Connection");
+		builder.setPositiveButton("Settings",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						ctx.startActivity(new Intent(
+								Settings.ACTION_WIRELESS_SETTINGS));
+					}
+				});
+		builder.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				});
+		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			public void onCancel(DialogInterface dialog) {
+				return;
+			}
+		});
+
+		builder.show();
 	}
 
 }

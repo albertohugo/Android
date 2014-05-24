@@ -19,7 +19,7 @@
     <item name="android:actionBarStyle">@style/ActionBar</item>
 </style>
 <style name="ActionBar" parent="AppBaseTheme">
-    <item name="android:icon">@drawable/ic_add_location</item>
+  
 </style>
     
   
