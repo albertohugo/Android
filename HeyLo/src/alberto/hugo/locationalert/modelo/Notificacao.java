@@ -3,13 +3,23 @@ package alberto.hugo.locationalert.modelo;
 import java.io.Serializable;
 
 public class Notificacao implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 
 	private Integer image;
 	
 	private String descricao;
 	private String endereco;
+	private Integer raio;
 	
+	public Integer getRaio() {
+		return raio;
+	}
+	public void setRaio(int i) {
+		this.raio = i;
+	}
 	public Long getId() {
 		return id;
 	}

@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class NotificacaoDAO extends SQLiteOpenHelper{
 
 	private static final String DATABASE = "HeyLo";
-	private static final int VERSAO = 6;
+	private static final int VERSAO = 7;
 	
 	public NotificacaoDAO(Context context) {
 		super(context, DATABASE, null, VERSAO);
@@ -23,12 +23,13 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 		values.put("imagem", notificacao.getImage());
 		values.put("descricao", notificacao.getDescricao());
 		values.put("endereco", notificacao.getEndereco());
+		values.put("raio", notificacao.getRaio());
 	
 		getWritableDatabase().insert("Notificacoes", null, values);
 	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String ddl = "CREATE TABLE Notificacoes (id INTEGER PRIMARY KEY, imagem INTEGER, descricao TEXT UNIQUE NOT NULL, endereco TEXT);";
+		String ddl = "CREATE TABLE Notificacoes (id INTEGER PRIMARY KEY, imagem INTEGER, descricao TEXT UNIQUE NOT NULL, endereco TEXT, raio INTEGER);";
 		db.execSQL(ddl);
 	}
 
@@ -40,7 +41,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 	}
 	
 	public List<Notificacao> getLista() {
-		String[] colunas = { "id", "imagem","descricao", "endereco"};
+		String[] colunas = { "id", "imagem","descricao", "endereco", "raio"};
 		Cursor cursor = getWritableDatabase().query("Notificacoes", colunas, null,
 				null, null, null, null);
 
@@ -52,6 +53,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 			notificacao.setImage(cursor.getInt(1));
 			notificacao.setDescricao(cursor.getString(2));
 			notificacao.setEndereco(cursor.getString(3));
+			notificacao.setRaio(cursor.getInt(4));
 		
 			notificacoes.add(notificacao);
 		}
@@ -69,6 +71,7 @@ public class NotificacaoDAO extends SQLiteOpenHelper{
 		values.put("imagem", notificacao.getImage());
 		values.put("descricao", notificacao.getDescricao());
 		values.put("endereco", notificacao.getEndereco());
+		values.put("raio", notificacao.getRaio());
 
 		String[] args= {notificacao.getId().toString()};
 		getWritableDatabase().update("Notificacoes", values, "id=?", args);		

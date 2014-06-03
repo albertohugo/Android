@@ -25,7 +25,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class HeyLoListActivity extends ActionBarActivity {
 	private ListView lista;
@@ -38,13 +37,13 @@ public class HeyLoListActivity extends ActionBarActivity {
 
 		NotificacaoDAO dao = new NotificacaoDAO(this);
 		List<Notificacao> notificacoes = dao.getLista();
-		dao.close();			
-	
+		dao.close();
+
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(
 				notificacoes, this);
 
 		lista = (ListView) findViewById(R.id.lista);
-		
+
 		// Ativa a lista para o menu de longo clique
 		registerForContextMenu(lista);
 		lista.setAdapter(adapter);
@@ -90,20 +89,21 @@ public class HeyLoListActivity extends ActionBarActivity {
 		switch (itemClicado) {
 		case R.id.novo:
 			Intent irParaFormulario = new Intent(this, FormularioActivity.class);
-			startActivity(irParaFormulario);
+			startActivity(irParaFormulario);			
 			break;
 		case R.id.mapa:
 			ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		     NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-		     
-		     if(activeNetworkInfo != null){	    			
+			NetworkInfo activeNetworkInfo = connectivityManager
+					.getActiveNetworkInfo();
+
+			if (activeNetworkInfo != null
+					&& activeNetworkInfo.isConnectedOrConnecting()) {
 				Intent irParaMapa = new Intent(this, MapActivity.class);
 				startActivity(irParaMapa);
-		     } else {		  
-			    	CallNetworkSetting();
-				}
-		     
-		     
+			} else {
+				CallNetworkSetting();
+			}
+
 			break;
 
 		default:
@@ -149,6 +149,7 @@ public class HeyLoListActivity extends ActionBarActivity {
 
 		lista.setAdapter(adapter);
 	}
+
 	private void CallNetworkSetting() {
 		final Context ctx = this;
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
@@ -176,5 +177,7 @@ public class HeyLoListActivity extends ActionBarActivity {
 
 		builder.show();
 	}
+
+	
 
 }

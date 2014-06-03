@@ -36,8 +36,7 @@ public class ListaNotificacoesAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
+	public int getCount() {	
 		return notificacoes.size();
 	}
 

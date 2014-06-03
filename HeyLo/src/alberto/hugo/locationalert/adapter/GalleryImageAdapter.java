@@ -47,7 +47,6 @@ public class GalleryImageAdapter extends BaseAdapter
     // Override this method according to your need
     public View getView(int index, View view, ViewGroup viewGroup) 
     {
-        // TODO Auto-generated method stub
         ImageView i = new ImageView(mContext);
 
         i.setImageResource(mImageIds[index]);

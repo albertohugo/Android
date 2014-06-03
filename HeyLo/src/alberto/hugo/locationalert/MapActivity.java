@@ -2,21 +2,14 @@ package alberto.hugo.locationalert;
 
 import alberto.hugo.locationalert.fragment.MapaFragment;
 import alberto.hugo.locationalert.mapa.AtualizadorDePosicao;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MapActivity extends ActionBarActivity {
 
@@ -38,7 +31,6 @@ public class MapActivity extends ActionBarActivity {
 
 	}
 
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();

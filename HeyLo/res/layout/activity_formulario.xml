@@ -8,13 +8,13 @@
     <Gallery
         android:id="@+id/galleryImages"
         android:layout_width="150dp"
-        android:layout_height="wrap_content" 
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Descrição: " />
+        android:text="@string/description" />
 
     <EditText
         android:id="@+id/descricao"
@@ -24,11 +24,50 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Endereço: " />
+        android:layout_gravity="right"
+        android:text="@string/desc_description"
+        android:textColor="#9F9F9F"
+        android:textSize="10dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address" />
 
     <EditText
         android:id="@+id/endereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/desc_address"
+        android:textColor="#9F9F9F"
+        android:textSize="10dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radius" />
+
+    <EditText
+        android:id="@+id/raio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/desc_raio"
+        android:textColor="#9F9F9F"
+        android:textSize="10dip" />
 
 </LinearLayout>

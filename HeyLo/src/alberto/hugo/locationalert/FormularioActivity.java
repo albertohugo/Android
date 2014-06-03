@@ -1,12 +1,11 @@
 package alberto.hugo.locationalert;
 
-import alberto.hugo.locationalert.adapter.GalleryImageAdapter;
 import alberto.hugo.locationalert.dao.NotificacaoDAO;
 import alberto.hugo.locationalert.modelo.Notificacao;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,13 +14,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Gallery;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class FormularioActivity extends ActionBarActivity implements
 		OnItemSelectedListener {
-	private static final String TAG = null;
-	private Spinner spinner;
 	private FormularioHelper helper;
 	private Notificacao notificacaoParaSerAlterada;
 
@@ -72,19 +68,21 @@ public class FormularioActivity extends ActionBarActivity implements
 			Notificacao notificacao = helper.pegaNotificacaoDoFormulario();
 			NotificacaoDAO dao = new NotificacaoDAO(FormularioActivity.this);
 
-			if(isValidAddress(notificacao.getEndereco().toString())==true && isValidDescription(notificacao.getDescricao().toString())==true){			
-			
-			if (notificacaoParaSerAlterada == null) {
-				dao.salva(notificacao);
-			} else {
-				notificacao.setId(notificacaoParaSerAlterada.getId());
-				dao.altera(notificacao);
-			}
+			if (isValidAddress(notificacao.getEndereco().toString()) == true
+					&& isValidDescription(notificacao.getDescricao().toString()) == true 
+					&& isValidRadius(notificacao.getRaio()) == true) {
 
-			dao.close();
-			finish();
-			
-			}else{
+				if (notificacaoParaSerAlterada == null) {
+					dao.salva(notificacao);
+				} else {
+					notificacao.setId(notificacaoParaSerAlterada.getId());
+					dao.altera(notificacao);
+				}
+
+				dao.close();
+				finish();
+
+			} else {
 				return true;
 			}
 
@@ -99,23 +97,19 @@ public class FormularioActivity extends ActionBarActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
 	}
-	
+
 	public boolean isValidAddress(String string) {
 		if (string != null && string.length() > 2) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isValidDescription(String string) {
 		if (string != null && string.length() > 0) {
 			return true;
@@ -123,4 +117,10 @@ public class FormularioActivity extends ActionBarActivity implements
 		return false;
 	}
 
+	public boolean isValidRadius(Integer integer) {
+		if (integer != null && integer > 0) {
+			return true;
+		}
+		return false;
+	}
 }
