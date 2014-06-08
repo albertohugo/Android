@@ -1,8 +1,13 @@
 package alberto.hugo.locationalert;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import alberto.hugo.locationalert.fragment.MapaFragment;
 import alberto.hugo.locationalert.mapa.AtualizadorDePosicao;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,7 +33,6 @@ public class MapActivity extends ActionBarActivity {
 		transaction.replace(R.id.mapa, mapaFragment);
 		transaction.commit();
 		atualizador = new AtualizadorDePosicao(this, mapaFragment);
-
 	}
 
 	@Override
