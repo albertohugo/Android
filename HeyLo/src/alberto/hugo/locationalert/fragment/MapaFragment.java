@@ -33,8 +33,6 @@ public class MapaFragment extends SupportMapFragment {
 	public CircleOptions[] circleOptionList = new CircleOptions[999];	
 	public List<Notificacao> notificacoes;
 	
-	
-
 		@Override
 		public void onResume() {
 			super.onResume();
@@ -107,14 +105,5 @@ public class MapaFragment extends SupportMapFragment {
 		
 		this.circleOptions = circleOptions;
 	}
-	
-/*	public CircleOptions[] getCircleOptionList(int i) {		
-		return circleOptionList;
-	}
-	
-public void setCircleOptionList(CircleOptions[] circleOptionList, int i) {		
-		this.circleOptionList[i] = circleOptionList[i];
-	}*/
-	
 
 }

@@ -29,12 +29,16 @@ import android.widget.ListView;
 public class HeyLoListActivity extends ActionBarActivity {
 	private ListView lista;
 	private Notificacao notificacao;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_hey_lo);
-
+				setContentView(R.layout.activity_hey_lo);
+		
+		/*Intent i = new Intent(this, MapActivity.class);  
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		this.startActivity(i); */
+		
 		NotificacaoDAO dao = new NotificacaoDAO(this);
 		List<Notificacao> notificacoes = dao.getLista();
 		dao.close();
@@ -100,6 +104,7 @@ public class HeyLoListActivity extends ActionBarActivity {
 					&& activeNetworkInfo.isConnectedOrConnecting()) {
 				Intent irParaMapa = new Intent(this, MapActivity.class);
 				startActivity(irParaMapa);
+				
 			} else {
 				CallNetworkSetting();
 			}
@@ -135,7 +140,6 @@ public class HeyLoListActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-
 		carregaLista();
 
 	}

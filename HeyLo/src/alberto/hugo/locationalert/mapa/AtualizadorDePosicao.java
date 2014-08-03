@@ -1,5 +1,6 @@
 package alberto.hugo.locationalert.mapa;
 
+import alberto.hugo.locationalert.HeyLoListActivity;
 import alberto.hugo.locationalert.R;
 import alberto.hugo.locationalert.fragment.MapaFragment;
 import android.app.Activity;
@@ -9,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -106,6 +108,7 @@ public class AtualizadorDePosicao implements LocationListener {
 			if(validationCicle != null){
 				validationCicle.remove();
 				markerInRadius();	
+				
 				return;
 			}else
 			{
